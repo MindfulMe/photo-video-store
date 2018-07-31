@@ -1,0 +1,21 @@
+{
+  "name": "FS",
+  "version": "1.0.0",
+  "description": "photostore app",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.238.1",
+    "body-parser": "*",
+    "express": "*",
+    "mongoose": "*",
+    "nodemon": "^1.17.3",
+    "passport": "^0.4.0",
+    "web-push": "^3.3.1"
+  },
+  "author": "Rosty",
+  "license": "ISC"
+}

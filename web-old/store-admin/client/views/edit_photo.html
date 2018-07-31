@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<link class="jsbin" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script class="jsbin" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.0/jquery-ui.min.js"></script>
+<meta charset=utf-8 />
+<title>JS Bin</title>
+<!--[if IE]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+<style>
+  article, aside, figure, footer, header, hgroup, 
+  menu, nav, section { display: block; }
+</style>
+</head>
+<body>
+  <a href="#/photos">Regresa</a>
+<link rel="stylesheet" href="css/ultimos.css">
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Editar foto</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-12">
+      <form ng-submit="updatePhoto()" ng-init="getPhoto()">
+        <div class="form-group">
+          <label>Título</label>
+          <input type="text" class="form-control" ng-model="photo.title" placeholder="Title">
+        </div>
+        <div class="form-group">
+          <label>Nombre del Bebé</label>
+          <input type="text" class="form-control" ng-model="photo.author" placeholder="Author">
+        </div>
+        <div class="form-group">
+          <label>Fecha</label>
+          <input type="text" class="form-control" ng-model="photo.publisher" placeholder="Publisher">
+        </div>
+        <div class="form-group">
+          <label>Descripción</label>
+          <textarea class="form-control" ng-model="photo.description" placeholder="Description"></textarea>
+        </div>
+        <div class="form-group">
+          <label>URL de la imagen</label>
+          <input type="text" class="form-control" id='image_src_url' ng-model="photo.image_url" placeholder="Image URL" value='https://servmask.com/img/products/url.png'>
+          O <br>  
+          <input type="file" id="file-input">
+          <img id="preview" src="/images/transparente.png">
+          
+          
+     
+        </div>
+       
+        <button type="submit" class="btn btn-default">Enviar</button>
+      </form>
+      <form method="POST" action="/save-details">
+        <input type="hidden" id="avatar-url" name="avatar-url" value="/images/transparente.png">
+      </form>
+    </div>
+    </div>
+  </div>
+  <script>
+    function getSignedRequest(file){
+      const xhr = new XMLHttpRequest();
+      xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
+      xhr.onreadystatechange = () => {
+        if(xhr.readyState === 4){
+          if(xhr.status === 200){
+            const response = JSON.parse(xhr.responseText);
+            uploadFile(file, response.signedRequest, response.url);
+          }
+          else{
+            alert('Could not get signed URL.');
+          }
+        }
+      };
+      xhr.send();
+    }
+    
+    function uploadFile(file, signedRequest, url){
+      const xhr = new XMLHttpRequest();
+      xhr.open('PUT', signedRequest);
+      xhr.onreadystatechange = () => {
+        if(xhr.readyState === 4){
+          if(xhr.status === 200){
+            document.getElementById('preview').src = url;
+            document.getElementById('image_src_url').value = url;
+            document.getElementById('avatar-url').value = url;
+          }
+          else{
+            alert('Could not upload file.');
+          }
+        }
+      };
+      xhr.send(file);
+    }
+    
+       function initUpload(){
+          const files = document.getElementById('file-input').files;
+          const file = files[0];
+          if(file == null){
+            return alert('No file selected.');
+          }
+          getSignedRequest(file);
+        }
+        
+        /*
+         Bind listeners when the page loads.
+        */
+    
+        (() => {
+            document.getElementById('file-input').onchange = initUpload;
+        })();
+        
+             </script>
+</div>
+</body>
+</html>

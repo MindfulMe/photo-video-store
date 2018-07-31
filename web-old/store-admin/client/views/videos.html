@@ -1,0 +1,22 @@
+<div class="panel panel-default" ng-init="getVideos()">
+  <div class="panel-heading">
+	<link rel="stylesheet" href="css/ultimos.css">
+    <h3 class="panel-title">Ultimos vidéos</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+    	<div ng-repeat="video in videos">
+    		<div class="col-md-6">
+    			<div class="col-md-6">
+    				<h4>{{video.title}}</h4>
+    				<p>{{video.description}}</p>
+    				<a class="btn btn-primary" href="#/videos/details/{{video._id}}">Ver detalles</a>
+    			</div>
+    			<div class="col-md-6">
+    				<img class="thumbnail" src="https://tru-vue.com/wp-content/uploads/2015/11/video-icon.jpg">
+    			</div>
+    		</div>
+    	</div>
+    </div>
+  </div>
+</div>

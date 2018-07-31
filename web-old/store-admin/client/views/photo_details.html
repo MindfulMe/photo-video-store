@@ -1,0 +1,31 @@
+<a href="#/photos">Regresa</a>
+<link rel="stylesheet" href="css/ultimos.css">
+<div class="panel panel-default" ng-init="getPhoto()">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{photo.title}}</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-4">
+        <img src="{{photo.image_url}}">
+      </div>
+      <div class="col-md-8">
+        </p>{{photo.description}}</p>
+        <p id='iunique'>Unique ID: </p>
+        <ul class="list-group">
+          <li class="list-group-item">Nombre del Bebé: {{photo.author}}</li>
+          <li class="list-group-item">Fecha: {{photo.publisher}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="pull-right">
+  <a href="#/photos/edit/{{photo._id}}">Editar</a> | <a href="#" ng-click="removePhoto(photo._id)">Borrar</a>
+  <div class="pull-right">
+      <script>
+      var mydiv = document.getElementById("iunique");
+      mydiv.appendChild(document.createTextNode(window.location.href.split("details/").pop()));
+       </script>
+  </div>

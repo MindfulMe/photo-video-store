@@ -1,0 +1,34 @@
+
+<link rel="stylesheet" href="css/ultimos.css">
+<div class="panel panel-default" ng-init="getVideo()">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{video.title}}</h3>
+  </div>
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-4">
+     <a target="_blank" href="{{video.video_url}}" class="btn btn-primary" onclick="document.location={{video.video_url}}">
+        <img src="https://i.ytimg.com/vi/QP-3YcvPXAI/maxresdefault.jpg">
+    </a>
+      </div>
+      <div class="col-md-8">
+        </p>{{video.description}}</p>
+        <p id='vunique'>Unique ID: </p>
+        <ul class="list-group">
+          <li class="list-group-item">Nombre del Bebé: {{video.author}}</li>
+          <li class="list-group-item">Fecha: {{video.publisher}}</li>
+        </ul>
+        <a target="_blank" href="{{video.video_url}}" class="btn btn-primary">Ver</a>
+      </div>
+    </div>
+    <br>
+  </div>
+</div>
+
+<div class="pull-right">
+    <script>
+    var mydiv = document.getElementById("vunique");
+    mydiv.appendChild(document.createTextNode(window.location.href.split("details/").pop() ));
+    
+     </script>
+  </div>

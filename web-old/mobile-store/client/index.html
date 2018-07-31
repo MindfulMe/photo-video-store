@@ -1,0 +1,74 @@
+<html ng-app="myApp">
+<head><title>Videos</title>
+	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Navegación de palanca</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <img src="images/logoeco.jpg" style='height:auto; width:50px;' >
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+        </div>
+      </div>
+    </nav>
+    <div class="container">
+        <img src="images/transparente.png" style=' width:30%; z-index: -1; position: absolute; left: 38%;' >
+    <div class='finders'>
+      <form onsubmit="imageFinder()">
+        <h1 class='padder'>Imagen ID</h1>
+        <div id='namer'>
+        <input type="text" id="ifinder" size="20" name="mail">
+      </div>
+        <input  class="large blue button" type="submit" value="Enviar">
+      </form>
+      
+      <form onsubmit="videoFinder()">
+          <h1>Video ID</h1>
+          <div id='namer'>
+          <input type="text" id="vfinder" size="20" name="mail">
+        </div>
+        
+          <input  class="large blue button" type="submit" value="Enviar">
+        </form>
+      </div>
+     </div>
+     <div class="row">
+      <div class="col-md-12" class='int'>
+     <div ng-view></div>
+    </div>
+  </div>
+    </div>
+    <script>
+      function imageFinder() {
+        var ivalue = document.getElementById("ifinder").value;
+        console.log(ivalue);
+        window.location.href = "http://client-panel-s.herokuapp.com/#/photos/details/"+ivalue;
+      }
+
+//client-panel-s.herokuapp.com
+      function videoFinder() {
+        var vvalue = document.getElementById("vfinder").value;
+        console.log(vvalue);
+        window.location.href = "http://client-panel-s.herokuapp.com/#/videos/details/"+vvalue;
+      }
+      </script>
+      <!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5af2f08d2b31a586"></script>
+
+	<script src="/bower_components/jquery/dist/jquery.js"></script>
+	<script src="/bower_components/angular/angular.js"></script>
+	<script src="/bower_components/angular-route/angular-route.js"></script>
+	<script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+	<script src="/app.js"></script>
+	<script src="/controllers/photos.js"></script>
+	<script src="/controllers/scans.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "expo": {
+    "name": "Baby5D",
+    "icon": "./logo.png",
+    "version": "1.0.0",
+    "slug": "super-slug228",
+    "sdkVersion": "26.0.0",
+    "ios": {
+      "bundleIdentifier": "com.baby5d.barc"
+    },
+    "android": {
+      "package": "com.baby5d.barc"
+    }
+  },
+  "name": "BabyWhite55DD",
+  "displayName": "BabyWhite55DD"
+}
